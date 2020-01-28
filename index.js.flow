@@ -1,6 +1,6 @@
 // @flow
 
-import { ApolloClient } from 'apollo-client'
+import { ApolloClient } from '@apollo/client'
 import getSchemaTypes from './getSchemaTypes'
 import type { Types } from './getSchemaTypes'
 import doesQueryContain from './doesQueryContain'
@@ -39,11 +39,6 @@ export default async function refetch(
   predicate?: ?any,
   idField?: string
 ): Promise<any> {
-  // if (!(client instanceof ApolloClient)) {
-  //   throw new Error(
-  //     `client must be an ApolloClient, instead got: ${String(client)}`
-  //   )
-  // }
   const types: Types = await refetch.fetchTypeMetadata(client)
 
   let terms
@@ -63,7 +58,7 @@ export default async function refetch(
     const { document, observableQuery } = query
     if (!observableQuery) continue
     let data
-    const currentResult = observableQuery.currentResult()
+    const currentResult = observableQuery.getCurrentResult()
     if (currentResult) data = currentResult.data
 
     if (
@@ -79,6 +74,7 @@ export default async function refetch(
         )
       )
     ) {
+      console.log(observableQuery)
       promises.push(observableQuery.refetch())
     }
   }
