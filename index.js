@@ -122,7 +122,7 @@ function _refetch() {
                   observableQuery = query.observableQuery;
               if (!observableQuery) return "continue";
               var data = void 0;
-              var currentResult = observableQuery.getCurrentResult();
+              var currentResult = observableQuery.currentResult ? observableQuery.currentResult() : observableQuery.getCurrentResult();
               if (currentResult) data = currentResult.data;
 
               if (every(terms, function (_ref3) {

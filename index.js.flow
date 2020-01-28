@@ -58,7 +58,9 @@ export default async function refetch(
     const { document, observableQuery } = query
     if (!observableQuery) continue
     let data
-    const currentResult = observableQuery.getCurrentResult()
+    const currentResult = observableQuery.currentResult
+      ? observableQuery.currentResult()
+      : observableQuery.getCurrentResult()
     if (currentResult) data = currentResult.data
 
     if (
