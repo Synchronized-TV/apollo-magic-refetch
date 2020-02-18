@@ -76,7 +76,6 @@ export default async function refetch(
         )
       )
     ) {
-      console.log(observableQuery)
       promises.push(observableQuery.refetch())
     }
   }

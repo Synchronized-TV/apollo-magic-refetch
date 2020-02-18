@@ -133,7 +133,6 @@ function _refetch() {
 
                 return (0, _doesQueryContain.default)(document, types, typename, data, predicate != null ? normalizePredicate(predicate, idField || 'id') : null);
               })) {
-                console.log(observableQuery);
                 promises.push(observableQuery.refetch());
               }
             };
